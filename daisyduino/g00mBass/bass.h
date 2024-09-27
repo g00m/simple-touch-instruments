@@ -211,21 +211,20 @@ public:
 
   void SetVoxParams(const VoxParams& p) {
     auto osc1_mult = _scale.TransMult(p.osc1_pitch);
-    auto osc2_mult = _scale.TransMult(p.osc2_pitch);
 
-    // auto osc2_mult = 1.f;
-    // Vox::Osc2Mode mode;
-    // switch (p.osc2_mode_index) {
-    //   case 0: 
-    //   mode = Vox::Osc2Mode::sound; 
-    //   osc2_mult = _scale.TransMult(p.osc2_pitch);
-    //   break;
+    auto osc2_mult = 1.f;
+    Vox::Osc2Mode mode;
+    switch (p.osc2_mode_index) {
+      case 0: 
+      mode = Vox::Osc2Mode::sound; 
+      osc2_mult = _scale.TransMult(p.osc2_pitch);
+      break;
       
-    //   default: 
-    //   mode = Vox::Osc2Mode::am; 
-    //   osc2_mult = 99 * p.osc2_pitch * p.osc2_pitch;
-    //   break;
-    // }
+      default: 
+      mode = Vox::Osc2Mode::am; 
+      osc2_mult = 99 * p.osc2_pitch * p.osc2_pitch;
+      break;
+    }
     
     _env = p.env;
 
